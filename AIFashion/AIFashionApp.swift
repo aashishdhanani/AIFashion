@@ -6,12 +6,27 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
-struct AIFashionApp: App {
+struct fashionAIApp: App {
+    @StateObject private var appState = AppStateManager()
+    @StateObject private var photoManger = PhotoManager()
+    
+    init() {
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if appState.userIsLoggedIn {
+                WelcomePage()
+                    .environmentObject(appState)
+                    .environmentObject(photoManger)
+            } else {
+                ContentView()
+                    .environmentObject(appState)
+                    .environmentObject(photoManger)
+            }
         }
     }
 }
