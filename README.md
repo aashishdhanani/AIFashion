@@ -11,7 +11,7 @@ FashionAI is an IOS app that was built to solve my lack of fashion in a clothing
 
 - SwiftUI using XCode (frontend work)
 - Python (RAG pipeline)
-- GPT4o's API (for the AI. **Note that if you want to use this app for personal purposes, you will have to get an API key and add it to the config file once cloned.**)
+- GPT4o's API (for the AI. **Note that if you want to use this app for personal purposes, you will have to get an API key, create a config file, and add that key once cloned.**)
 
 
 ### Getting Started
@@ -21,7 +21,7 @@ If you want to try this out for yourself, follow these steps!
 1. Clone the repo
    `git clone https://github.com/aashishdhanani/AIFashion.git`
 
-2. Add your API key to the config file (won't be able to use the app without it!)
+2. Add your API key to a config file (won't be able to use the app without it!)
 
 3. Either plug in your phone to your laptop, or run on a simulator (personal phone recommended)
 
