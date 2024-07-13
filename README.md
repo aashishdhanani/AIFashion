@@ -19,7 +19,7 @@ FashionAI is an IOS app that was built to solve my lack of fashion in a clothing
 
 If you want to try this out for yourself, follow these steps!
 
-1. Clone the repo
+1. Clone the repo and open in XCode
    
    `git clone https://github.com/aashishdhanani/AIFashion.git`
 
