@@ -10,6 +10,7 @@ FashionAI is an IOS app that was built to solve my lack of fashion in a clothing
 ### Technologies Used
 
 - SwiftUI using XCode (frontend work)
+- Firebase (backend database, authentification, storage)
 - Python (RAG pipeline)
 - GPT4o's API (for the AI. **Note that if you want to use this app for personal purposes, you will have to get an API key, create a config file, and add that key once cloned.**)
 
@@ -19,10 +20,18 @@ FashionAI is an IOS app that was built to solve my lack of fashion in a clothing
 If you want to try this out for yourself, follow these steps!
 
 1. Clone the repo
+   
    `git clone https://github.com/aashishdhanani/AIFashion.git`
 
-2. Add your API key to a config file (won't be able to use the app without it!)
+3. Add your API key to a config file (won't be able to use the app without it!)
 
-3. Either plug in your phone to your laptop, or run on a simulator (personal phone recommended)
+4. Either plug in your phone to your laptop, or run on a simulator (personal phone recommended)
 
-4. Thats all! Enjoy FashionAI
+5. Thats all! Enjoy FashionAI
+
+### Extra resources
+
+- [OpenAI](https://platform.openai.com/docs/api-reference/introduction)
+- [SwiftUI](https://developer.apple.com/tutorials/develop-in-swift/)
+- [Firebase Tutorial](https://firebase.google.com/docs)
+- [RAG Pipeline Tutorial](https://www.youtube.com/watch?v=6D9mpFCPeI8)
