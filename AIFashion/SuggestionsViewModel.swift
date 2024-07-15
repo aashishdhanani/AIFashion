@@ -36,7 +36,16 @@ import SwiftOpenAI
        content: [ChatCompletionParameters.Message.ContentType.MessageContent]) async throws
    {
        print("Inside startStreamedChat function") // Debugging statement
-       await startNewUserDisplayMessage(content)
+
+       // Filter out text prompts and keep only image URLs for display
+       let displayContent = content.filter {
+           if case .imageUrl(_) = $0 {
+               return true
+           }
+           return false
+       }
+
+       await startNewUserDisplayMessage(displayContent)
        await startNewAssistantEmptyDisplayMessage()
        
        do {
@@ -66,6 +75,7 @@ import SwiftOpenAI
    @MainActor
    private func startNewUserDisplayMessage(_ content: [ChatCompletionParameters.Message.ContentType.MessageContent]) {
       print("Starting new user message with content: \(content)")
+      guard !content.isEmpty else { return } // Prevent displaying empty content
       let startingMessage = ChatDisplayMessage(
          content: .content(content),
          type: .sent, delta: nil)

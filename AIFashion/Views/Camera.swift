@@ -1,10 +1,3 @@
-//
-//  Camera.swift
-//  AIFashion
-//
-//  Created by Aashish Dhanani on 7/10/24.
-//
-
 import SwiftUI
 import FirebaseStorage
 import FirebaseFirestore
@@ -18,15 +11,44 @@ struct Camera: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Image(uiImage: image ?? UIImage(named: "placeholder")!)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 350, height: 300)
+            ZStack {
+                // Background gradient
+                LinearGradient(gradient: Gradient(colors: [Color.blue.opacity(0.3), Color.purple.opacity(0.3)]),
+                               startPoint: .topLeading,
+                               endPoint: .bottomTrailing)
+                    .edgesIgnoringSafeArea(.all)
                 
-                Button("choose picture") {
-                    self.showSheet = true
-                }.padding()
+                VStack {
+                    if let image = image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 350, height: 300)
+                            .cornerRadius(20)
+                            .shadow(radius: 10)
+                            .transition(.slide) // Animation
+                    } else {
+                        Image("new_placeholder")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 350, height: 300)
+                            .cornerRadius(20)
+                            .shadow(radius: 10)
+                            .transition(.slide) // Animation
+                    }
+                    
+                    Button(action: {
+                        self.showSheet = true
+                    }) {
+                        Text("Choose Picture")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                    }
+                    .padding()
                     .actionSheet(isPresented: $showSheet, content: {
                         ActionSheet(title: Text("Select Photo"),
                                     message: Text("Choose"), buttons: [
@@ -40,25 +62,32 @@ struct Camera: View {
                                         },
                                         .cancel()
                                     ])
-                    }
-                    )
-               //upload button
-                if image != nil {
-                    Button {
-                        if let image = image {
-                            photoManager.uploadPhoto(image)
-                            self.image = nil
+                    })
+                    
+                    if image != nil {
+                        Button(action: {
+                            if let image = image {
+                                photoManager.uploadPhoto(image)
+                                self.image = nil
+                            }
+                        }) {
+                            Text("Upload Photo")
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.green)
+                                .cornerRadius(10)
+                                .shadow(radius: 5)
                         }
-                    } label: {
-                        Text("upload photo")
+                        .padding()
+                        .transition(.opacity) // Animation
                     }
+                    
+                    Divider()
+                    
                 }
-                
-                Divider()
-                
+                .navigationTitle("Camera")
             }
-            .navigationTitle("Camera")
-            
         }.sheet(isPresented: $showImagePicker, content: {
             ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
         })
